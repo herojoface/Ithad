@@ -40,15 +40,15 @@
       padding: 0;
       background: linear-gradient(90deg, #ffe3d1 0%, #fff 100%);
       width: 100%;
-      height: 112px;
+      height: 180px; /* تم تكبير الشعار */
       display: flex;
       align-items: center;
       justify-content: center;
     }
     .logo-area img {
-      width: 100%;
-      height: 96px;
-      max-width: unset;
+      height: 170px;   /* تم تكبير الشعار */
+      width: auto;     /* يظل العرض تلقائي */
+      max-width: 90%;  /* لا يتجاوز 90% */
       max-height: unset;
       object-fit: contain;
       border-radius: 0;
@@ -186,10 +186,10 @@
         padding: 0 10px;
       }
       .logo-area {
-        height: 78px;
+        height: 120px; /* تكبير في الجوال أيضاً */
       }
       .logo-area img {
-        height: 64px;
+        height: 110px;
       }
     }
   </style>
@@ -434,16 +434,23 @@
     });
   });
 
+  // تعديل دالة الإدخال لتاريخ الميلاد ليضيف / بعد اليوم وبعد الشهر تلقائيًا
   document.getElementById('dob').addEventListener('input', function(e){
-    let val = this.value.replace(/[^0-9\/]/g, '');
-    let parts = val.split('/');
-    if (parts.length > 3) parts = parts.slice(0,3);
-    if (parts[0]) parts[0] = parts[0].slice(0,2);
-    if (parts[1]) parts[1] = parts[1].slice(0,2);
-    if (parts[2]) parts[2] = parts[2].slice(0,4);
-    let newVal = parts.join('/');
-    if (newVal.length === 2 && !newVal.includes('/')) newVal += '/';
-    if (newVal.length === 5 && newVal.split('/').length < 2) newVal += '/';
+    let val = this.value.replace(/[^0-9]/g, '');
+    let newVal = '';
+    if(val.length >= 2){
+      newVal += val.slice(0,2) + '/';
+      if(val.length >= 4){
+        newVal += val.slice(2,4) + '/';
+        if(val.length > 4){
+          newVal += val.slice(4,8);
+        }
+      }else if(val.length > 2){
+        newVal += val.slice(2);
+      }
+    }else{
+      newVal = val;
+    }
     this.value = newVal;
   });
 </script>
